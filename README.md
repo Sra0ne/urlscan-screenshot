@@ -30,3 +30,6 @@ This script has no dependencies and only uses the Ruby standard library
 
 ## Contributing
 Feel free to contribute or expand by opening issues or submitting pull requests.
+
+## License
+This project is licensed under the MIT License.
