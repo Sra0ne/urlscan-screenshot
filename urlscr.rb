@@ -1,3 +1,5 @@
+# github.com/sra0ne/urlscan-screenshot
+
 require 'uri'
 require 'net/http'
 require 'net/https'
@@ -14,12 +16,10 @@ def send_request(url)
   uri = URI('https://urlscan.io/api/v1/scan/')
   http = Net::HTTP.new(uri.host, uri.port)
   http.use_ssl = true
-
   request = Net::HTTP::Post.new(uri)
   request['Content-Type'] = 'application/x-www-form-urlencoded'
   request['API-Key'] = ENV['urlsckey'] # Set an environment variable with your urlscan.io API key
   request.body = "url=#{url}"
-
   response = http.request(request)
   handle_response(response)
 end
@@ -57,6 +57,7 @@ def handle_screenshot_response(sc_response, uuid)
     exit
   end
 end
+
 def save_result(uuid)
   result_uri = URI("https://urlscan.io/api/v1/result/#{uuid}/")
   http = Net::HTTP.new(result_uri.host, result_uri.port)
@@ -75,6 +76,7 @@ def save_result(uuid)
     exit
   end
 end
+
 def rerun
   loop do
     puts 'Type Y to send another URL or N to exit'
@@ -89,7 +91,7 @@ def rerun
     when 'N'
       exit
     else
-      exit
+      puts 'Invalid input,enter Y or N'
     end
   end
 end
